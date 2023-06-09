@@ -16,4 +16,4 @@ chromatic_aberration(float2 position, half4 color, float rSlider, float gSlider,
 
 | Before | After |
 |--------|-------|
-| ![Before](images/before.png) | ![After](images/after.png)
+| ![Before](Images/before.png) | ![After](Images/after.png)
