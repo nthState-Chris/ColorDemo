@@ -13,3 +13,7 @@ We use the `Shader.Argument.image` to convert an image which we can sample.
 [[ stitchable ]] half4
 chromatic_aberration(float2 position, half4 color, float rSlider, float gSlider, float bSlider, const texture2d<half, access::sample> texture) {
 ```
+
+| Before | After |
+|--------|-------|
+| ![Before](images/before.png) | ![After](images/after.png)
