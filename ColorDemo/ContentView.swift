@@ -65,9 +65,9 @@ extension ContentView: View {
             Image("ChrisDavis")
                 .frame(width: 300, height: 300)
                 .foregroundStyle(.tint)
-            .layerEffect(getLayerShader(r: rSlider, g: gSlider, b: bSlider), maxSampleOffset: .init(width: 100, height: 100), isEnabled: true)
+                .layerEffect(getLayerShader(r: rSlider, g: gSlider, b: bSlider), maxSampleOffset: .init(width: 100, height: 100), isEnabled: true)
             //.colorEffect(getColorShader(r: rSlider, g: gSlider, b: bSlider), isEnabled:  true)
-                //.distortionEffect(getDistortShader(r: rSlider, g: gSlider, b: bSlider), maxSampleOffset: .init(width: 100, height: 100), isEnabled: true)
+            //.distortionEffect(getDistortShader(r: rSlider, g: gSlider, b: bSlider), maxSampleOffset: .init(width: 100, height: 100), isEnabled: true)
 
             Text("Chris Davis")
 

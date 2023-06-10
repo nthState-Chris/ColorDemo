@@ -21,6 +21,9 @@ distortEffect(float2 position, float rSlider, float gSlider, float bSlider) {
 [[ stitchable ]] half4
 layerEffect(float2 position, SwiftUI::Layer layer, float rSlider, float gSlider, float bSlider) {
 
-    float2 newPos = float2(position.x + rSlider, position.y + gSlider);
+    float2 newPos = float2(position.x, position.y);
+    if (newPos.x > 150) {
+        newPos = cos(newPos / rSlider);
+    }
     return layer.sample(newPos);
 }
