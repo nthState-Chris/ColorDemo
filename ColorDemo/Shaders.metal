@@ -3,7 +3,7 @@
 using namespace metal;
 
 [[ stitchable ]] half4
-chromatic_aberration(float2 position, half4 color, float rSlider, float gSlider, float bSlider, const texture2d<half, access::sample> texture) {
+colorEffect(float2 position, half4 color, float rSlider, float gSlider, float bSlider, const texture2d<half, access::sample> texture) {
 
     const half4 r = texture.read(uint2(position.x - rSlider, position.y + rSlider));
     const half4 g = texture.read(uint2(position.x - gSlider, position.y + gSlider));
@@ -15,7 +15,12 @@ chromatic_aberration(float2 position, half4 color, float rSlider, float gSlider,
 [[ stitchable ]] float2
 distortEffect(float2 position, float rSlider, float gSlider, float bSlider) {
 
-    return float2(position.x * gSlider, position.y * rSlider);
+    float2 newPos = position;
+    if (int(position.x) % int(rSlider) == 0) {
+        newPos.x = newPos.x * gSlider;
+    }
+
+    return newPos;
 }
 
 [[ stitchable ]] half4
