@@ -20,7 +20,7 @@ struct ContentView {
 
 extension ContentView: View {
 
-    func getShader(r: Float, g: Float, b: Float) -> Shader {
+    func getColorShader(r: Float, g: Float, b: Float) -> Shader {
         let f = ShaderFunction(library: .default,
                                name: "chromatic_aberration")
 
@@ -38,12 +38,37 @@ extension ContentView: View {
         return shader
     }
 
+    func getDistortShader(r: Float, g: Float, b: Float) -> Shader {
+        let f = ShaderFunction(library: .default,
+                               name: "distortEffect")
+
+        let shader = Shader(function: f, arguments: [.float(r),
+                                                     .float(g),
+                                                     .float(b)])
+
+        return shader
+    }
+
+    func getLayerShader(r: Float, g: Float, b: Float) -> Shader {
+        let f = ShaderFunction(library: .default,
+                               name: "layerEffect")
+
+        let shader = Shader(function: f, arguments: [.float(r),
+                                                     .float(g),
+                                                     .float(b)])
+
+        return shader
+    }
+
     var body: some View {
         VStack {
             Image("ChrisDavis")
                 .frame(width: 300, height: 300)
                 .foregroundStyle(.tint)
-                .colorEffect(getShader(r: rSlider, g: gSlider, b: bSlider), isEnabled: true)
+            .layerEffect(getLayerShader(r: rSlider, g: gSlider, b: bSlider), maxSampleOffset: .init(width: 100, height: 100), isEnabled: true)
+            //.colorEffect(getColorShader(r: rSlider, g: gSlider, b: bSlider), isEnabled:  true)
+                //.distortionEffect(getDistortShader(r: rSlider, g: gSlider, b: bSlider), maxSampleOffset: .init(width: 100, height: 100), isEnabled: true)
+
             Text("Chris Davis")
 
             Slider(value: $rSlider, in: -5...5)
